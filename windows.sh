@@ -34,11 +34,11 @@ sudo ln -s /usr/bin/genisoimage /usr/bin/mkisofs
 sudo mkdir /mediabots /floppy /virtio
 link1_status=$(curl -Is https://archive.org/download/server-2016-x-64-fre-es-es/Server%202016%20X64FRE_ES-ES.ISO | grep HTTP | cut -f2 -d" " | head -1)
 link2_status=$(curl -Is https://archive.org/download/server-2016-x-64-fre-es-es/Server%202016%20X64FRE_ES-ES.ISO | grep HTTP | cut -f2 -d" ")
-#sudo wget -P /mediabots https://archive.org/download/server-2016-x-64-fre-es-es/Server%202016%20X64FRE_ES-ES.ISO # Windows Server 2016  
+#sudo wget -P /mediabots https://archive.org/download/server-2016-x-64-fre-es-es/Server%202016%20X64FRE_ES-ES.ISO # Windows Server 2016 
 if [ $link1_status = "200" ] ; then 
 	sudo wget -O /mediabots/https://archive.org/download/server-2016-x-64-fre-es-es/Server%202016%20X64FRE_ES-ES.ISO.iso
 elif [ $link2_status = "200" -o $link2_status = "301" -o $link2_status = "302" ] ; then 
-	sudo wget -P /mediabots https://archive.org/download/server-2016-x-64-fre-es-es/Server%202016%20X64FRE_ES-ES.ISO.iso
+	sudo wget -P /mediabots https://archive.org/download/server-2016-x-64-fre-es-es/Server%202016%20X64FRE_ES-ES.ISO
 else
 	echo -e "${RED}[Error]${NC} ${YELLOW}Sorry! None of Windows OS image urls are available , please report about this issue on Github page : ${NC}https://github.com/mediabots/Linux-to-Windows-with-QEMU"
 	echo "Exiting.."
@@ -297,4 +297,3 @@ echo "Windows OS required at least 25GB free desk space. Your Server/VPS does't 
 echo "Exiting....."
 fi
 fi
-
